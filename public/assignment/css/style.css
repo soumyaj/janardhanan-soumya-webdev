@@ -1,7 +1,32 @@
-input.form-control {
-    margin-bottom: 5px;
+.input.form-control {
+    margin-bottom: 5px
+}
+.body {
+    padding-top: 60px
 }
 
-body {
-    padding-top: 36px;
+.glyphicon-inverse {
+    color: #fff
+}
+.header {
+    background-color: #337ab7
+
+}
+.header-text {
+    background-color: #337ab7;
+    font-size: 20px;
+    font-weight: bold;
+    color: white
+}
+.header-icon {
+    background-color: #337ab7;
+    font-size: 15px;
+    color: white
+}
+.footer{
+    background-color: #337ab7
+}
+.footer-text {
+    background-color: #337ab7;
+    color: white
 }
