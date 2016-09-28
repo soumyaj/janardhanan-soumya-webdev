@@ -47,7 +47,6 @@ body {
 li {
     padding-top: 3px;
     color: #337ab7;
-    font-size: 16px;
 }
 
 li.borderless {
@@ -56,4 +55,21 @@ li.borderless {
     border-left: 0 none;
     border-right: 0 none;
     padding-right: 0px;
+}
+
+.right-padding-zero {
+    padding-right: 0px;
+}
+
+@media only screen and (orientation: portrait) {
+     .soumya {
+         display: none;
+         width: 100%;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    .soumya {
+
+    }
 }
