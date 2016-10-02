@@ -68,3 +68,13 @@ textarea {
     width: 100%;
 }
 
+.v-divider{
+    width:1px;
+    background-color: black;
+    left: 33%;
+    position: absolute;
+    z-index: 5;
+    top:0;
+    bottom: 0;
+}
+
