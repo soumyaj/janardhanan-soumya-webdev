@@ -18,24 +18,24 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: white;
-    padding-left: 0px;
+
 }
 .header-icon {
     background-color: #337ab7;
     font-size: 15px;
     color: white;
     padding-top: 3px;
+
 }
 .footer{
     background-color: #337ab7
 }
 .footer-text {
     background-color: #337ab7;
-    color: white
+    color: white;
 }
 
 .body-icon {
-
     font-size: 16px;
     color: #337ab7;
     padding-left: 10px;
@@ -55,22 +55,16 @@ li.borderless {
     border-bottom: 0 none;
     border-left: 0 none;
     border-right: 0 none;
-    padding-right: 0px;
 }
 
 .right-padding-zero {
     padding-right: 0px;
 }
 
-@media only screen and (orientation: portrait) {
-     .soumya {
-         display: none;
-         width: 100%;
-    }
+textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
 }
 
-@media only screen and (orientation: landscape) {
-    .soumya {
-
-    }
-}
