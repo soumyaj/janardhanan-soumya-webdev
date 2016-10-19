@@ -1,0 +1,41 @@
+<h2>Login</h2>
+
+<form name="loginForm">
+
+    <input ng-model="username"
+           placeholder="username"
+           required
+           name="username"
+           class="form-control"/>
+    <span ng-show="loginForm.username.$invalid">
+        Username is required
+    </span>
+
+    <input ng-model="password"
+           placeholder="password"
+           required
+           class="form-control"/>
+
+    <button type="submit"
+            class="btn btn-primary btn-block"
+            ng-click="model.login(username, password)">
+        Login
+    </button>
+
+</form>
+<a href="#/register"
+   class="btn btn-success btn-block">
+    Register
+</a>
+
+<a href="/auth/google"
+   class="btn btn-danger btn-block">
+    <span class="fa fa-google-plus"></span>
+    Google
+</a>
+
+<a href="/auth/facebook"
+   class="btn btn-primary btn-block">
+    <span class="fa fa-facebook"></span>
+    Facebook
+</a>
