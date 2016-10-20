@@ -24,9 +24,9 @@
 
         function createUser(user) {
             for(var u in users) {
-                user = users[u];
+                current_user = users[u];
                 // Duplicate check
-                if(user._id === user[_id]) {
+                if(user._id === current_user[_id]) {
                     return null;
                 }
             }
@@ -36,17 +36,25 @@
         }
 
         function findUserById(userId) {
+            console.log("USER ID "+userId)
             for(var u in users) {
-                user = users[u];
-                if(user._id === userId) {
-                    return user;
+                curr_user = users[u];
+                console.log(curr_user)
+                if(parseInt(curr_user._id) === parseInt(userId)) {
+                    return curr_user;
                 }
             }
             return null;
         }
 
         function findUserByUsername(username) {
-
+            for(var u in users) {
+                user = users[u];
+                if(user.username === username) {
+                    return user;
+                }
+            }
+            return null;
         }
 
         function findUserByCredentials(username, password) {
@@ -62,14 +70,21 @@
         }
 
         function updateUser(userId, user) {
-
+            for(var u in users) {
+                current_user = users[u];
+                if(user._id === current_user._id) {
+                    users[u].firstName = user.firstName;
+                    users[u].lastName = user.lastName;
+                    break;
+                }
+            }
         }
-
         function deleteUser(userId) {
             for(var u in users) {
                 user = users[u];
                 if(user._id === userId)
                     users.splice(u, 1);
+                    break;
             }
         }
 

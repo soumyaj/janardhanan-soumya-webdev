@@ -10,29 +10,46 @@ body {
 .glyphicon-inverse {
     color: #fff
 }
-.header {
+.blue-header {
     background-color: #337ab7
 }
-.header-text {
+.header {
+
+}
+.blue-header-text {
     background-color: #337ab7;
     font-size: 20px;
     font-weight: bold;
     color: white;
-
 }
-.header-icon {
+.header-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    padding-left: 0px;
+}
+.blue-header-icon {
     background-color: #337ab7;
     font-size: 15px;
     color: white;
     padding-top: 3px;
-
 }
-.footer{
+.header-icon {
+    color: black;
+    font-size: 15px;
+    padding-top: 3px;
+}
+.blue-footer{
     background-color: #337ab7
 }
-.footer-text {
+.blue-footer-text {
     background-color: #337ab7;
     color: white;
+}
+.footer{
+}
+.footer-text {
+
 }
 
 .body-icon {
@@ -76,5 +93,21 @@ textarea {
     z-index: 5;
     top:0;
     bottom: 0;
+}
+
+.relative-position {
+    position: relative;
+}
+.absolute-position {
+    position: absolute;
+}
+.list-element-menu {
+    top: 0px;
+    right: 0px;
+    z-index: 10;
+    background-color: white;
+}
+.zero-right-padding {
+    padding-right: 0px;
 }
 

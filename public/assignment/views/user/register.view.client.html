@@ -1,17 +1,17 @@
 <div class="container">
     <h1>Register</h1>
     <form name="registerForm">
-        <input ng-model="username"
+        <input ng-model="model.user.username"
                type="text"
                class="form-control"
                required
                placeholder="User Name"/>
-        <input ng-model="password"
+        <input ng-model="model.user.password"
                type="password"
                class="form-control"
                required
                placeholder="Password"/>
-        <input ng-model ="password2"
+        <input ng-model ="model.user.password2"
                type="password"
                class="form-control"
                required
@@ -19,7 +19,7 @@
     </form>
     <button type="submit"
             class="btn btn-primary btn-block"
-            ng-click="model.register(username, password)">
+            ng-click="model.register(model.user.username, model.user.password,model.user.password2)">
         Register
     </button>
     <a class="btn btn-danger  btn-block"

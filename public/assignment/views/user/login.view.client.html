@@ -2,23 +2,23 @@
 
 <form name="loginForm">
 
-    <input ng-model="username"
+    <input ng-model="model.user.username"
            placeholder="username"
            required
            name="username"
            class="form-control"/>
     <span ng-show="loginForm.username.$invalid">
-        Username is required
+        {{model.error}}
     </span>
 
-    <input ng-model="password"
+    <input ng-model="model.user.password"
            placeholder="password"
            required
            class="form-control"/>
 
     <button type="submit"
             class="btn btn-primary btn-block"
-            ng-click="model.login(username, password)">
+            ng-click="model.login(model.user.username, model.user.password)">
         Login
     </button>
 

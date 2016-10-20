@@ -23,7 +23,13 @@
         return api;
 
         function createPage(websiteId, page) {
-
+            for(var p in pages) {
+                curr_page = pages[p];
+                if(curr_widget._id === widgetId) {
+                    return curr_widget;
+                }
+            }
+            return null;
         }
 
         function findPageByWebsiteId(websiteId) {

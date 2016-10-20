@@ -28,22 +28,58 @@
         return api;
 
         function createWidget(pageId, widget)  {
+            for(var w in widgets) {
+                curr_widget = widgets[w];
+                // Duplicate check
+                if(widget._id === curr_widget[_id]) {
+                    return null;
+                }
+            }
+            if(user!=null) {
+                widget.pageId = pageId
+                widgets.push(widget)
 
+            }
         }
 
         function findWidgetsByPageId(pageId) {
-
+            for(var w in widgets) {
+                curr_widget = widgets[w];
+                if(curr_widget.pageId === pageId) {
+                    return curr_widget;
+                }
+            }
+            return null;
         }
 
         function findWidgetById(widgetId) {
-
+            for(var w in widgets) {
+                curr_widget = widgets[w];
+                if(curr_widget._id === widgetId) {
+                    return curr_widget;
+                }
+            }
+            return null;
         }
         function updateWidget(widgetId, widget) {
+            for(var w in widgets) {
+                curr_widget = widgets[w];
+                if(curr_widget._id === widgetId) {
+                    curr_widget = widget;
+                }
+            }
+            return null;
 
         }
 
         function deleteWidget(widgetId) {
-
+            for(var w in widgets) {
+                curr_widget = widgets[w];
+                if(curr_widget._id === widgetId) {
+                    widgets.splice(curr_widget,1);
+                }
+            }
+            return null;
         }
     }
 })();
