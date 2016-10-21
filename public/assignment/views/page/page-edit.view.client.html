@@ -1,34 +1,36 @@
 <nav class="navbar navbar-fixed-top navbar-default header">
         <span class="navbar-brand navbar-default header">
-        <a href="/user/{{model.website.developerId}}/website/{{model.page.websiteId}}/page" class="navbar-link">
+        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/" class="navbar-link">
             <span class="glyphicon glyphicon-chevron-left pull-left header-icon"></span>
         </a>
         </span>
     <span class="navbar-brand navbar-default header-text text-right">Edit Page</span>
-    <span class="navbar-brand navbar-default pu/user/:uid/website/:wid/pagepage-list.view.client.html" class="navbar-link ">
-                <span class="glyphicon glyphicon-ok header-icon"></span>
-            </a>
-        </span>
+    <span class="navbar-brand navbar-default pull-right header">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/" class="navbar-link ">
+                    <span class="glyphicon glyphicon-ok header-icon"></span>
+                </a>
+            </span>
 </nav>
 
 <div class="container-fluid">
     <form>
         <div class="form-group">
             <label for="pageName">Name</label>
-            <input type="text" class="form-control" id="pageName" placeholder="Page Name">
+            <input ng-model="model.page.name" type="text" class="form-control" id="pageName" placeholder="Page Name">
         </div>
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" placeholder="Page Title">
+            <input ng-model="model.page.description" type="text" class="form-control" id="title" placeholder="Page Title">
         </div>
     </form>
 
     <a class="btn btn-danger btn-block"
-       href="/user/:uid/website/:wid/page">Delete</a>
+       href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/">Delete</a>
+
     <nav class="navbar navbar-default navbar-fixed-bottom footer">
         <div class="container-fluid">
             <div class="row container-fluid navbar-default navbar-text pull-right">
-                <a href="../user/profile.view.client.html">
+                <a href="#/user/{{model.userId}}/">
                     <span class="glyphicon glyphicon-user footer-text"></span>
                 </a>
             </div>

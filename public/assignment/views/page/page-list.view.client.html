@@ -1,71 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Website Builder</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/page-widget.css" rel="stylesheet"/>
-    <meta name="viewport" content="width=device-width initial-scale=1">
-</head>
-<body>
-    <nav class="navbar navbar-fixed-top navbar-default header">
+<nav class="navbar navbar-fixed-top navbar-default header">
         <span class="navbar-brand navbar-default header">
-        <a href="../website/website-list.view.client.html" class="navbar-link">
+        <a href="#/user/{{model.userId}}/website/" class="navbar-link">
             <span class="glyphicon glyphicon-chevron-left pull-left header-icon"></span>
         </a>
         </span>
-        <span class="navbar-brand navbar-default header-text text-right">Pages</span>
-        <span class="navbar-brand navbar-default pull-right ">
-            <a href="page-new.view.client.html" class="navbar-link ">
+    <span class="navbar-brand navbar-default header-text text-right">Pages</span>
+    <span class="navbar-brand navbar-default pull-right ">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new/" class="navbar-link ">
                 <span class="glyphicon glyphicon-plus header-icon"></span>
             </a>
         </span>
-    </nav>
+</nav>
 
-    <div class="container-fluid borderless">
-        <ul class="list-group ">
-            <li class="list-group-item borderless">
-                <a href="../widget/widget-list.view.client.html">Blog Posts</a>
-                <a href="page-edit.view.client.html" class="navbar-link ">
-                    <span class="glyphicon glyphicon-cog body-icon pull-right"></span>
-                </a>
-            </li>
-            <li class="list-group-item borderless">
-                <a href="../widget/widget-list.view.client.html">Blogs</a>
+<div class="container-fluid borderless">
+    <ul class="list-group ">
+        <li ng-repeat="page in model.pages" class="list-group-item borderless">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget/">{{page.name}}</a>
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/" class="navbar-link">
+                <span class="glyphicon glyphicon-cog body-icon pull-right"></span>
+            </a>
+        </li>
+    </ul>
 
-                <a href="page-edit.view.client.html" class="navbar-link ">
-                    <span class="glyphicon glyphicon-cog body-icon pull-right"></span>
+    <nav class="navbar navbar-default navbar-fixed-bottom footer">
+        <div class="container-fluid">
+            <div class="row container-fluid navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/">
+                    <span class="glyphicon glyphicon-user footer-text"></span>
                 </a>
-            </li>
-            <li class="list-group-item borderless">
-                <a href="../widget/widget-list.view.client.html">Home</a>
-                <a href="#" class="navbar-link ">
-                    <span class="glyphicon glyphicon-cog body-icon pull-right"></span>
-                </a>
-            </li>
-            <li class="list-group-item borderless">
-                <a href="../widget/widget-list.view.client.html">About</a>
-                <a href="page-edit.view.client.html" class="navbar-link ">
-                    <span class="glyphicon glyphicon-cog body-icon pull-right"></span>
-                </a>
-            </li>
-            <li class="list-group-item borderless">
-                <a href="../widget/widget-list.view.client.html">Contact Us</a>
-                <a href="page-edit.view.client.html" class="navbar-link ">
-                    <span class="glyphicon glyphicon-cog body-icon pull-right"></span>
-                </a>
-            </li>
-        </ul>
-
-        <nav class="navbar navbar-default navbar-fixed-bottom footer">
-            <div class="container-fluid">
-                <div class="row container-fluid navbar-text pull-right">
-                    <a href="../user/profile.view.client.html">
-                        <span class="glyphicon glyphicon-user footer-text"></span>
-                    </a>
-                </div>
             </div>
-        </nav>
-    </div>
-</body>
-</html>
+        </div>
+    </nav>
+</div>

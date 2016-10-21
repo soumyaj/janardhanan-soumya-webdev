@@ -33,11 +33,27 @@
         }
 
         function findPageByWebsiteId(websiteId) {
-
+            console.log(websiteId)
+            var output = []
+            for(var p in pages) {
+                curr_page = pages[p];
+                console.log(curr_page.websiteId)
+                if(parseInt(curr_page.websiteId) === parseInt(websiteId)) {
+                    output.push(curr_page);
+                }
+            }
+            console.log(websiteId)
+            return output;
         }
 
         function findPageById(pageId) {
-
+            for(var p in pages) {
+                curr_page = pages[p];
+                if(parseInt(curr_page._id) === parseInt(pageId)) {
+                    return curr_page;
+                }
+            }
+            return null;
         }
         function updatePage(pageId, page) {
 
