@@ -1,0 +1,30 @@
+<nav class="navbar navbar-fixed-top navbar-default header">
+        <span class="navbar-brand navbar-default header">
+        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/" class="navbar-link">
+            <span class="glyphicon glyphicon-chevron-left pull-left header-icon"></span>
+        </a>
+        </span>
+        <span class="navbar-brand navbar-default header-text text-right">Widget Edit</span>
+        <p class="navbar-text pull-right">
+            <a ng-click="model.updateWidget(model.widget)"
+               class="navbar-link">
+                    <span class="glyphicon glyphicon-ok">
+                    </span>
+            </a>
+        </p>
+</nav>
+<div class="scroll-y">
+    <div ng-include="'views/widget/widget-'+model.widget.widgetType+'.view.client.html'"></div>
+    <a class="btn btn-danger btn-block"
+       href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/">Delete</a>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom footer">
+    <div class="container-fluid">
+        <div class="row container-fluid navbar-text pull-right">
+            <a href="#/user/{{model.userId}}/">
+                <span class="glyphicon glyphicon-user footer-text"></span>
+            </a>
+        </div>
+    </div>
+</nav>

@@ -33,6 +33,7 @@
             widget._id = widget_id;
             widget.pageId = pageId;
             widgets.push(widget);
+            console.log(widgets)
             return widget_id;
         }
 
@@ -51,28 +52,30 @@
         function findWidgetById(widgetId) {
             for(var w in widgets) {
                 curr_widget = widgets[w];
-                if(curr_widget._id === widgetId) {
+                if(parseInt(curr_widget._id) === parseInt(widgetId)) {
                     return curr_widget;
                 }
             }
+            console.log("After if loop "+widgetId)
             return null;
         }
+
         function updateWidget(widgetId, widget) {
+
             for(var w in widgets) {
                 curr_widget = widgets[w];
-                if(curr_widget._id === widgetId) {
+                if(curr_widget._id === parseInt(widgetId)) {
                     curr_widget = widget;
                     break;
                 }
             }
-            return null;
         }
 
         function deleteWidget(widgetId) {
             for(var w in widgets) {
                 curr_widget = widgets[w];
                 if(curr_widget._id === widgetId) {
-                    widgets.splice(curr_widget,1);
+                    widgets.splice(parseInt(w),1);
                 }
             }
             return null;
