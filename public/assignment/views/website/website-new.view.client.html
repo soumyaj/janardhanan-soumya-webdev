@@ -21,7 +21,7 @@
             </span>
             <span class="navbar-brand blue-header-text text-right">New Website</span>
             <span class="navbar-brand navbar-default pull-right blue-header">
-                <a href="#/user/{{model.userId}}/website" class="navbar-link ">
+                <a ng-click="model.createWebsite(website)" href="#/user/{{model.userId}}/website" class="navbar-link ">
                     <span class="glyphicon glyphicon-ok blue-header-icon"></span>
                 </a>
             </span>
@@ -51,11 +51,11 @@
             <form>
                 <div class="form-group">
                     <label for="websiteName">Website Name</label>
-                    <input ng-model="model.website.name" type="text" class="form-control" id="websiteName" placeholder="Blogger">
+                    <input ng-model="website.name" type="text" class="form-control" id="websiteName" placeholder="Blogger">
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea ng-model="model.website.description"class="form-control" id="description" rows="6"></textarea>
+                    <textarea ng-model="website.description"class="form-control" id="description" rows="6"></textarea>
                 </div>
             </form>
         </div>

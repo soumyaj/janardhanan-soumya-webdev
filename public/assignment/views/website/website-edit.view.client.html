@@ -2,26 +2,26 @@
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <span class="navbar-brand navbar-default blue-header">
-            <a href="#/user/{{model.userId}}/website" class="navbar-link">
+            <a href="#/user/{{model.userId}}/website/" class="navbar-link">
                 <span class="glyphicon glyphicon-chevron-left pull-left blue-header-icon"></span>
             </a>
             </span>
             <span class="navbar-brand blue-header-text text-right">Websites</span>
             <span class="navbar-brand navbar-default pull-right blue-header">
-                <a href="#/user/{{model.userId}}/website" class="navbar-link ">
+                <a href="#/user/{{model.userId}}/website/" class="navbar-link ">
                     <span class="glyphicon glyphicon-plus blue-header-icon"></span>
                 </a>
             </span>
         </div>
         <div class="col-sm-8">
             <span class="navbar-brand navbar-default blue-header">
-            <a href="#/user/{{model.userId}}/website" class="navbar-link">
+            <a href="#/user/{{model.userId}}/website/" class="navbar-link">
                 <span class="glyphicon glyphicon-chevron-left pull-left blue-header-icon"></span>
             </a>
             </span>
             <span class="navbar-brand blue-header-text text-right">Edit Website</span>
             <span class="navbar-brand navbar-default pull-right blue-header">
-                <a href="#/user/{{model.userId}}/website" class="navbar-link ">
+                <a ng-click="model.updateWebsite(website)" href="#/user/{{model.userId}}/website/" class="navbar-link ">
                     <span class="glyphicon glyphicon-ok blue-header-icon"></span>
                 </a>
             </span>
@@ -47,20 +47,22 @@
     <div class="col-sm-8">
 
         <div class="container-fluid">
-            <form>
+            <form name = "websiteEditForm">
                 <div class="form-group">
                     <label for="websiteName">Website Name</label>
                     <input ng-model="model.website.name" type="text" class="form-control" id="websiteName" placeholder="Blogger">
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea class="form-control" ng-model="model.website.description" id="description" rows="6">Blogger Website Description </textarea>
+                    <textarea class="form-control" ng-model="model.website.description" id="description" rows="6">{{website.description}}</textarea>
                 </div>
-
             </form>
         </div>
-        <a class="btn btn-danger btn-block"
-           href="#/user/{{model.userId}}/website/{{model.website._id}}/page">Delete</a>
+        <a ng-click="model.deleteWebsite()" class="btn btn-danger btn-block"
+           href="#/user/{{model.userId}}/website/">Delete</a>
+        <span ng-show="websiteEditForm.websiteName.$invalid">
+        {{model.error}}
+    </span>
 
     </div>
 </div>

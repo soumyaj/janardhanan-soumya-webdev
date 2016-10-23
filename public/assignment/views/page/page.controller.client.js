@@ -19,15 +19,24 @@
 
     }
 
-    function newPageController($routeParams, PageService) {
+    function newPageController($routeParams, PageService, $location) {
         var vm = this;
         vm.userId = parseInt($routeParams['uid']);
         vm.websiteId = parseInt($routeParams['wid']);
 
+        vm.createPage = createPage;
         function init() {
 
         }
         init();
+
+        function createPage(page) {
+            page._id = (new Date()).getTime();
+            //website.developerId = vm.userId;
+            console.log(page);
+            PageService.createPage(vm.websiteId,page);
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page")
+        }
 
 
     }
@@ -37,6 +46,8 @@
         vm.userId = parseInt($routeParams['uid']);
         vm.websiteId = parseInt($routeParams['wid']);
         vm.pageId = parseInt($routeParams['pid']);
+        vm.deletePage = deletePage;
+
         function init() {
             vm.page = PageService.findPageById(vm.pageId);
 
@@ -44,6 +55,13 @@
         }
         init();
 
-
+        function deletePage() {
+            console.log("In controller "+ vm.pageId)
+            var status;
+            status = PageService.deletePage(vm.pageId)
+            if(status === null) {
+                vm.error = "Unable to delete page."
+            }
+        }
     }
 })();

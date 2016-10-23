@@ -11,30 +11,46 @@
 
         function init() {
             vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            console.log(vm.websites)
         }
         init();
     }
 
-    function newWebsiteController($routeParams,WebsiteService) {
+    function newWebsiteController($routeParams,WebsiteService,$location) {
         var vm = this;
         vm.userId = parseInt($routeParams['uid']);
+        vm.createWebsite = createWebsite;
 
         function init() {
             vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            console.log(vm.websites)
         }
         init();
+
+        function createWebsite(website) {
+            website._id = (new Date()).getTime();
+            //website.developerId = vm.userId;
+            WebsiteService.createWebsite(vm.userId,website)
+            $location.url("/user/"+vm.userId+"/website/")
+        }
     }
 
     function editWebsiteController($routeParams,WebsiteService) {
         var vm = this;
         vm.userId = parseInt($routeParams['uid']);
+        vm.websiteId = parseInt($routeParams['wid']);
+        vm.deleteWebsite = deleteWebsite;
 
         function init() {
             vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            console.log(vm.websites)
         }
         init();
+
+        function deleteWebsite() {
+            console.log("In controller "+ vm.websiteId)
+            var status;
+            status = WebsiteService.deleteWebsite(vm.websiteId)
+            if(status === null) {
+                vm.error = "Unable to delete website."
+            }
+        }
     }
 })();

@@ -1,96 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Website Builder</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/page-widget.css" rel="stylesheet"/>
-    <meta name="viewport" content="width=device-width initial-scale=1">
-</head>
-<body>
 <nav class="navbar navbar-fixed-top navbar-default header">
         <span class="navbar-brand navbar-default header">
-        <a href="../views/page/page-list.view.client.html" class="navbar-link">
+        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/" class="navbar-link">
             <span class="glyphicon glyphicon-chevron-left pull-left header-icon"></span>
         </a>
         </span>
     <span class="navbar-brand navbar-default header-text text-right">Widgets</span>
     <span class="navbar-brand navbar-default pull-right ">
-            <a href="widget-chooser.view.client.html" class="navbar-link ">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new/" class="navbar-link ">
                 <span class="glyphicon glyphicon-plus header-icon"></span>
             </a>
         </span>
 </nav>
 
-<div class="container-fluid">
-    <div class="list-group">
-        <div class="relative-position">
-            <div class="container-fluid zero-right-padding">
-                <h1> GIZMODO </h1>
-            </div>
-            <div class="absolute-position list-element-menu zero-right-padding">
-                <a href="widget-heading.view.client.html"><span class="glyphicon glyphicon-cog"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-            </div>
-        </div>
-        <div class="relative-position">
-            <div class="container-fluid zero-right-padding">
-                <h2> What We Know About the Extremely Dangerous Hurricane Matthew </h2>
-            </div>
-            <div class="absolute-position list-element-menu zero-right-padding">
-                <a href="widget-heading.view.client.html"><span class="glyphicon glyphicon-cog"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-            </div>
-        </div>
-        <div class="relative-position">
-            <div class="container-fluid zero-right-padding">
-                <img class="img-responsive" src="https://i.kinja-img.com/gawker-media/image/upload/s--yJxhsUwP--/c_scale,fl_progressive,q_80,w_800/tehmughz6ustgzjjrfz1.jpg" alt="Sample Image"/>
-            </div>
-            <div class="absolute-position list-element-menu zero-right-padding">
-                <a href="widget-image.view.client.html"><span class="glyphicon glyphicon-cog"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-            </div>
-        </div>
+<div class="row container-fluid">
+    <div class="col-sm-8 pull-right" style="padding-left: 30px;padding-right: 0px;">
+        <div ng-switch="widget.widgetType"
+             ng-repeat="widget in model.widgets">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}" class="pull-right">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
 
-        <div class="relative-position">
-            <div class="container-fluid zero-right-padding">
-                <h4> Since yesterday evening, Hurricane Matthew has gathered strength and is on a collision course with the Caribbean. Here’s what we know about the strongest hurricane to hit the region since 2007.</h4>
-            </div>
-            <div class="absolute-position list-element-menu zero-right-padding">
-                <a href="#"><span class="glyphicon glyphicon-cog"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-            </div>
-        </div>
-        <div class="relative-position">
-            <div class="container-fluid zero-right-padding">
-                <h2> Bees Placed on Endangered Species List for the First Time in the US</h2>
-            </div>
-            <div class="absolute-position list-element-menu zero-right-padding">
-                <a href="widget-heading.view.client.html"><span class="glyphicon glyphicon-cog"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-            </div>
-        </div>
-        <div class="relative-position">
-            <div class="container-fluid zero-right-padding">
-                <iframe src="https://www.youtube.com/embed/GqA42M4RtxE" frameborder="0" allowfullscreen></iframe>
+            <div ng-switch="widget.size" ng-switch-when="HEADER">
 
+                <h1 ng-switch-when=1>{{widget.text}}</h1>
+                <h2 ng-switch-when=2>{{widget.text}}</h2>
+                <h3 ng-switch-when=3>{{widget.text}}</h3>
+                <h4 ng-switch-when=4>{{widget.text}}</h4>
+                <h5 ng-switch-when=5>{{widget.text}}</h5>
+                <h6 ng-switch-when=6>{{widget.text}}</h6>
             </div>
-            <div class="absolute-position list-element-menu zero-right-padding">
-                <a href="widget-youtube.view.client.html"><span class="glyphicon glyphicon-cog"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+
+            <div ng-switch-when="YOUTUBE">
+                <iframe width="560" height="315"
+                        ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
+                        frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div ng-switch-when="IMAGE">
+                <img class="img-responsive" ng-src="{{model.checkSafeImageUrl(widget.url)}}">
+            </div>
+            <div ng-switch-when="HTML" ng-bind-html="model.checkSafeHtml(widget.text)">
             </div>
         </div>
     </div>
+    </div>
+
     <nav class="navbar navbar-default navbar-fixed-bottom footer">
         <div class="container-fluid">
             <div class="row container-fluid navbar-text pull-right">
-                <a href="../views/user/profile.view.client.html">
+                <a href="#/user/{{model.userId}}/">
                     <span class="glyphicon glyphicon-user footer-text"></span>
                 </a>
             </div>
         </div>
     </nav>
-</div>
-</div>
-</body>
-</html>

@@ -24,12 +24,18 @@
 
         function createPage(websiteId, page) {
             for(var p in pages) {
-                curr_page = pages[p];
-                if(curr_widget._id === widgetId) {
-                    return curr_widget;
+                current_page = pages[p];
+                // Duplicate check
+                if(page._id === current_page["_id"]) {
+                    return null;
                 }
             }
-            return null;
+            if(page!=null) {
+                page.websiteId = websiteId;
+                pages.push(page);
+            } else {
+                return null;
+            }
         }
 
         function findPageByWebsiteId(websiteId) {
@@ -60,7 +66,16 @@
         }
 
         function deletePage(pageId) {
-
+            console.log(" In service")
+            console.log(pageId)
+            for(var p in pages) {
+                curr_page = pages[p];
+                if(curr_page._id === pageId) {
+                    pages.splice(p,1)
+                    break;
+                }
+            }
+            return null;
         }
     }
 })();

@@ -19,12 +19,12 @@
             <input ng-model="model.page.name" type="text" class="form-control" id="pageName" placeholder="Page Name">
         </div>
         <div class="form-group">
-            <label for="title">Title</label>
-            <input ng-model="model.page.description" type="text" class="form-control" id="title" placeholder="Page Title">
+            <label for="description">Title</label>
+            <input ng-model="model.page.description" type="text" class="form-control" id="description" placeholder="Page Title">
         </div>
     </form>
 
-    <a class="btn btn-danger btn-block"
+    <a ng-click="model.deletePage()" class="btn btn-danger btn-block"
        href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/">Delete</a>
 
     <nav class="navbar navbar-default navbar-fixed-bottom footer">

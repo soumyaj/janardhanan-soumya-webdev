@@ -25,9 +25,9 @@
 
         function createWebsite(userId, website) {
             for(var w in websites) {
-                current_website = websites[u];
+                current_website = websites[w];
                 // Duplicate check
-                if(website._id === current_website[_id]) {
+                if(website._id === current_website["_id"]) {
                     return null;
                 }
             }
@@ -40,16 +40,13 @@
         }
 
         function findWebsitesByUser(userId) {
-            console.log(userId)
             var output = []
             for(var w in websites) {
                 curr_website = websites[w];
-                console.log(curr_website.developerId)
                 if(parseInt(curr_website.developerId) === parseInt(userId)) {
                     output.push(curr_website);
                 }
             }
-            console.log(userId)
             return output;
 
         }
@@ -73,6 +70,8 @@
             }
         }
         function deleteWebsite(websiteId) {
+            console.log(" In service")
+            console.log(websiteId)
             for(var w in websites) {
                 curr_website = websites[w];
                 if(curr_website._id === websiteId) {
@@ -80,6 +79,7 @@
                     break;
                 }
             }
+            return null;
         }
     }
 })();
