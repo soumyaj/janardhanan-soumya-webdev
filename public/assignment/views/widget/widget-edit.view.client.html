@@ -14,13 +14,8 @@
         </p>
 </nav>
 <div class="scroll-y">
-    <div ng-include="'views/widget/widget-'+model.widget.widgetType+'.view.client.html'"></div>
-
-
+    <div ng-include="'views/widget/widget-'+model.widget.widgetType.toLowerCase()+'.view.client.html'"></div>
 </div>
-
-<a ng-click="model.deleteWidget()" class="btn btn-danger btn-block"
-   href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/">Delete</a>
 
 <nav class="navbar navbar-default navbar-fixed-bottom footer">
     <div class="container-fluid">
