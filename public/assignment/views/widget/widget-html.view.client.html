@@ -1,0 +1,15 @@
+<div class="container">
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+    <form>
+        <div class="form-group">
+            <label for="html">HTML</label>
+            <textarea id="html" ng-model="model.widget.text" type="text" class="form-control" placeholder="Your html">
+                {{model.widget.text}}
+            </textarea>
+        </div>
+    </form>
+    <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block"
+       href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/">Delete</a>
+</div>

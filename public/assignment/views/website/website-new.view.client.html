@@ -33,6 +33,9 @@
 <div>
     <div class="v- col-sm-4 hidden-xs">
         <div class="container-fluid borderless">
+            <div ng-show="model.error" class="alert alert-danger" role="alert">
+                {{model.error}}
+            </div>
             <ul class="list-group ">
                 <li ng-repeat="website in model.websites" class="list-group-item borderless">
                     <a href="#/user/{{website.developerId}}/website/{{website._id}}/page/}}">{{website.name}}</a>

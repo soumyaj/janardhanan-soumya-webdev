@@ -1,5 +1,8 @@
 
 <div class="container-fluid">
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
     <form>
         <div class="form-group">
             <label for="widgetName">Name</label>
@@ -14,6 +17,6 @@
             <input ng-model="model.widget.size" type="number" class="form-control" id="size" placeholder="3">
         </div>
     </form>
-
-
+    <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block"
+       href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/">Delete</a>
 </div>

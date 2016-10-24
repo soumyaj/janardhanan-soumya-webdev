@@ -8,6 +8,9 @@
     </nav>
 
     <div class="container-fluid borderless">
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
         <ul class="list-group ">
             <li class="list-group-item borderless">
                 <a ng-click="model.createHeader()">Header</a>

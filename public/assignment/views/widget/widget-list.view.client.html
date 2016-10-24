@@ -13,6 +13,10 @@
 </nav>
 
 <div class="row container-fluid">
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
     <div>
         <div ng-switch="widget.widgetType"
              ng-repeat="widget in model.widgets">

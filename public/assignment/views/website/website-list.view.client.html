@@ -13,6 +13,9 @@
     </nav>
 
     <div class="container-fluid borderless">
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
         <ul class="list-group ">
             <li ng-repeat="website in model.websites" class="list-group-item borderless">
                 <h4>
