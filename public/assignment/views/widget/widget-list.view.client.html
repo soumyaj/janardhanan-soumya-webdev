@@ -13,9 +13,10 @@
 </nav>
 
 <div class="row container-fluid">
-    <div class="col-sm-8 pull-right" style="padding-left: 30px;padding-right: 0px;">
+    <div>
         <div ng-switch="widget.widgetType"
              ng-repeat="widget in model.widgets">
+
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
@@ -31,7 +32,7 @@
             </div>
 
             <div ng-switch-when="YOUTUBE">
-                <iframe width="560" height="315"
+                <iframe width={{model.width}} height="315"
                         ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
                         frameborder="0" allowfullscreen></iframe>
             </div>
