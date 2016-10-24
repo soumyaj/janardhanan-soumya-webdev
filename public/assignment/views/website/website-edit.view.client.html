@@ -21,7 +21,7 @@
             </span>
             <span class="navbar-brand blue-header-text text-right">Edit Website</span>
             <span class="navbar-brand navbar-default pull-right blue-header">
-                <a ng-click="model.updateWebsite(website)" href="#/user/{{model.userId}}/website/" class="navbar-link ">
+                <a ng-click="model.updateWebsite(model.website)" href="#/user/{{model.userId}}/website/" class="navbar-link ">
                     <span class="glyphicon glyphicon-ok blue-header-icon"></span>
                 </a>
             </span>
@@ -34,8 +34,8 @@
         <div class="container-fluid borderless">
             <ul class="list-group ">
                 <li ng-repeat="website in model.websites" class="list-group-item borderless">
-                    <a href="#/user/{{model.userId}}/website/{{website._id}}/page/}}">{{website.name}}</a>
-                    <a href="/user/{{model.userId}}/website/{{website._id}}/" class="navbar-link ">
+                    <a>{{website.name}}</a>
+                    <a href="#/user/{{website.developerId}}/website/{{website._id}}/" class="navbar-link ">
                         <span class="glyphicon glyphicon-cog body-icon pull-right"></span>
                     </a>
                 </li>
@@ -45,7 +45,9 @@
     <div class="v-divider hidden-sm hidden-xs"></div>
 
     <div class="col-sm-8">
-
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
         <div class="container-fluid">
             <form name = "websiteEditForm">
                 <div class="form-group">

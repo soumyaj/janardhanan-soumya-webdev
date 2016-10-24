@@ -72,17 +72,17 @@
         function updateUser(userId, user) {
             for(var u in users) {
                 current_user = users[u];
-                if(user._id === current_user._id) {
-                    users[u].firstName = user.firstName;
-                    users[u].lastName = user.lastName;
+                if(userId === parseInt(current_user._id)) {
+                    current_user = user;
                     break;
                 }
             }
         }
+
         function deleteUser(userId) {
             for(var u in users) {
                 user = users[u];
-                if(user._id === userId)
+                if(parseInt(user._id) === userId)
                     users.splice(u, 1);
                     break;
             }

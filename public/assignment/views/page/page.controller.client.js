@@ -50,7 +50,6 @@
 
         function init() {
             vm.page = PageService.findPageById(vm.pageId);
-
             console.log(vm.page.name)
         }
         init();

@@ -27,14 +27,9 @@
         return api;
 
         function createWidget(pageId, widget) {
-            var last_widget_id = parseInt(widgets[widgets.length - 1]._id);
-            var widget_id = last_widget_id + 1;
-
-            widget._id = widget_id;
-            widget.pageId = pageId;
             widgets.push(widget);
             console.log(widgets)
-            return widget_id;
+            return widget._id;
         }
 
 
@@ -64,7 +59,7 @@
 
             for(var w in widgets) {
                 curr_widget = widgets[w];
-                if(curr_widget._id === parseInt(widgetId)) {
+                if(parseInt(curr_widget._id) === parseInt(widgetId)) {
                     curr_widget = widget;
                     break;
                 }

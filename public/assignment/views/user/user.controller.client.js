@@ -45,10 +45,30 @@
     function profileController($routeParams,UserService, $location) {
         var vm = this;
         userId = $routeParams["uid"];
+        vm.updateUser = updateUser;
+        vm.deleteUser = deleteUser;
+
         function init() {
-            vm.user = UserService.findUserById(userId)
+            vm.user = UserService.findUserById(userId);
         }
 
+        function updateUser(user) {
+            if (user.name) {
+                UserService.updateUser(vm.userId, user);
+                $location.url("/user/" + vm.userId + "/user");
+            } else {
+                vm.error = "User name cant be empty!";
+            }
+        }
+
+        function deleteUser() {
+            console.log("In controller "+ vm.userId)
+            var status;
+            status = UserService.deleteUser(vm.userId)
+            if(status === null) {
+                vm.error = "Unable to delete website."
+            }
+        }
         init();
     }
 })();

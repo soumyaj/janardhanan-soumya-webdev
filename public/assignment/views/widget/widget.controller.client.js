@@ -49,6 +49,7 @@
         vm.checkSafeHtml = checkSafeHtml;
         vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
         vm.updateWidget = updateWidget;
+        vm.deleteWidget = deleteWidget;
 
         function init() {
             console.log("Widget ID "+ vm.widgetId);
@@ -91,6 +92,8 @@
         vm.createHtml = createHtml;
         vm.createImage = createImage;
         vm.createYoutube = createYoutube;
+        vm.checkSafeHtml = checkSafeHtml;
+        vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
 
         function init() {
             vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
@@ -100,14 +103,14 @@
             var widgetId = (new Date()).getTime().toString();
             var widget_object = { "_id": widgetId, "widgetType": "HEADER", "pageId": vm.pageId, "size": 4, "text": "New HEADER widget"};
             WidgetService.createWidget(vm.pageId, widget_object);
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/");
+            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/"+widgetId+"/");
         }
 
         function createHtml() {
             var widgetId = (new Date()).getTime().toString();
             var widget_object = { "_id": widgetId, "widgetType": "HTML", "pageId": vm.pageId, "text": "<p>New HTML widget</p>"};
             WidgetService.createWidget(vm.pageId, widget_object);
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/");
+            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/"+widgetId+"/");
         }
 
         function createImage() {
@@ -115,7 +118,7 @@
             var widget_object = { "_id": widgetId, "widgetType": "IMAGE", "pageId": vm.pageId, "width": "100%",
                 "url": "http://lorempixel.com/400/200/", "name":"", "text":""};
             WidgetService.createWidget(vm.pageId, widget_object);
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/");
+            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/"+widgetId+"/");
         }
 
         function createYoutube() {
@@ -123,7 +126,7 @@
             var widget_object = { "_id": widgetId, "widgetType": "YOUTUBE", "pageId": vm.pageId, "width": "100%",
                 "url": "https://youtu.be/AM2Ivdi9c4E" };
             WidgetService.createWidget(vm.pageId, widget_object);
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/");
+            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/"+widgetId+"/");
         }
         function checkSafeHtml(html) {
             return $sce.trustAsHtml(html);

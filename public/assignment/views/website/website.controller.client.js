@@ -33,17 +33,30 @@
         }
     }
 
-    function editWebsiteController($routeParams,WebsiteService) {
+    function editWebsiteController($routeParams,WebsiteService,$location) {
         var vm = this;
         vm.userId = parseInt($routeParams['uid']);
         vm.websiteId = parseInt($routeParams['wid']);
+
         vm.deleteWebsite = deleteWebsite;
+        vm.updateWebsite = updateWebsite;
 
         function init() {
             vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            vm.website = WebsiteService.findWebsiteById(vm.websiteId)
+
         }
         init();
 
+        function updateWebsite(website) {
+            if (website.name) {
+                WebsiteService.updateWebsite(vm.websiteId, website);
+                $location.url("/user/" + vm.userId + "/website");
+            } else {
+                vm.error = "Website name cant be empty!";
+            }
+
+        }
         function deleteWebsite() {
             console.log("In controller "+ vm.websiteId)
             var status;

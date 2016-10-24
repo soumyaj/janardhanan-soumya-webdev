@@ -53,7 +53,7 @@
         function findWebsiteById(websiteId)  {
             for(var w in websites) {
                 website = websites[w];
-                if(website._id === websiteId) {
+                if(parseInt(website._id) === websiteId) {
                     return website;
                 }
             }
@@ -63,7 +63,7 @@
         function updateWebsite(websiteId, website)  {
             for(var w in websites) {
                 curr_website = websites[w];
-                if(curr_website._id === websiteId) {
+                if(parseInt(curr_website._id) === websiteId) {
                     websites[w] = website;
                     break;
                 }
@@ -74,7 +74,7 @@
             console.log(websiteId)
             for(var w in websites) {
                 curr_website = websites[w];
-                if(curr_website._id === websiteId) {
+                if(parseInt(curr_website._id) === websiteId) {
                     websites.splice(w,1)
                     break;
                 }
