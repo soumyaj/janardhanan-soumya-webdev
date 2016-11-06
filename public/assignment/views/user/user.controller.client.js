@@ -11,14 +11,18 @@
 
         function register(username,password,password2) {
             console.log("In register controller "+ username)
-
-            var u = {_id: "123", username: username,    password: password,    firstName: "Alice",  lastName: "Wonder"  }
-            var user = UserService.createUser();
-            if(user === null) {
-                vm.error = "No such user";
+            if(password===password2) {
+                UserService
+                    .createUser(username, password)
+                    .success(function(user){
+                        $location.url("/user/"+user._id);
+                    })
+                    .error(function (error) {
+                    });
             } else {
-                $location.url("/user/" + user._id);
+                vm.error("Password and Verify Password fields don't match")
             }
+
         }
     }
 
@@ -28,46 +32,67 @@
 
         function login(username,password) {
             console.log("In login controller "+ username)
-            if(user === null || password == null) {
+
+            if(username === null || password == null) {
                 //vm.error = "Please enter both username and password";
                 return;
             }
-
-            var user = UserService.findUserByCredentials(username, password);
-            if(user === null) {
-                vm.error = "No such user";
-            } else {
-                $location.url("/user/" + user._id);
-            }
+            UserService
+                .findUserByCredentials(username, password)
+                .success(function(user) {
+                    console.log(user)
+                if(user === '0') {
+                    vm.error = "No such user";
+                } else {
+                    $location.url("/user/" + user._id);
+                    console.log("/user/" + user._id)
+                }
+            })
+                .error(function(err){
+                    console.log("In .error")
+                    console.log(err);
+                });
         }
     }
 
     function profileController($routeParams,UserService, $location) {
         var vm = this;
-        userId = $routeParams["uid"];
+        userId = parseInt($routeParams["uid"]);
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
 
         function init() {
-            vm.user = UserService.findUserById(userId);
+            UserService
+                .findUserById(userId)
+                .success(function (user) {
+                    console.log(userId)
+                    console.log(user)
+                    if(user !== 0) {
+                        vm.user = user;
+                    }
+                })
+                .error(function (err) {
+                    console.log("Couldnt find user. In ProfileController")
+                    console.log(err)
+                })
         }
 
         function updateUser(user) {
-            if (user.name) {
-                UserService.updateUser(vm.userId, user);
-                $location.url("/user/" + vm.userId + "/user");
+            if (user.email) {
+                console.log("Update user "+user.firstName)
+                UserService.updateUser(user);
+                $location.url("/user/" + vm.userId);
             } else {
-                vm.error = "User name cant be empty!";
+                vm.error = "Email cant be empty.";
             }
         }
 
         function deleteUser() {
-            console.log("In controller "+ vm.userId)
+            console.log("In controller "+ userId);
             var status;
-            status = UserService.deleteUser(vm.userId)
-            if(status === null) {
-                vm.error = "Unable to delete website."
-            }
+            UserService.deleteUser(userId)
+
+
         }
         init();
     }

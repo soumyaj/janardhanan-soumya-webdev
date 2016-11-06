@@ -11,37 +11,59 @@
         vm.websiteId = parseInt($routeParams['wid']);
 
         function init() {
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
-            console.log(vm.pages)
+            PageService
+                .findPageByWebsiteId(vm.websiteId)
+                .success(function (pages) {
+                vm.pages = pages;
+            })
+        .error(function (err) {
+                console.log("Service error retrieving pages");
+                console.log(err);
+            });
         }
         init();
-
-
     }
 
     function newPageController($routeParams, PageService, $location) {
         var vm = this;
         vm.userId = parseInt($routeParams['uid']);
         vm.websiteId = parseInt($routeParams['wid']);
-
         vm.createPage = createPage;
         function init() {
-
+            PageService
+                .findPageByWebsiteId(vm.websiteId)
+                .success(function (pages) {
+                    vm.pages = pages;
+                })
+                .error(function (err) {
+                    console.log("Service error retrieving pages");
+                    console.log(err);
+                })
         }
         init();
 
         function createPage(page) {
             page._id = (new Date()).getTime();
-            //website.developerId = vm.userId;
+            page.websiteId = vm.websiteId;
+
             console.log(page);
-            PageService.createPage(vm.websiteId,page);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page")
+            if (page.name) {
+                PageService
+                    .createPage(vm.websiteId,page)
+                    .success(function () {
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                    })
+                    .error(function (err) {
+                        console.log("Service error creating page");
+                        console.log(err);
+                    })
+            } else {
+                vm.error = "Page name cannot be empty.";
+            }
         }
-
-
     }
 
-    function editPageController($routeParams,PageService) {
+    function editPageController($routeParams,PageService,$location) {
         var vm = this;
         vm.userId = parseInt($routeParams['uid']);
         vm.websiteId = parseInt($routeParams['wid']);
@@ -49,18 +71,32 @@
         vm.deletePage = deletePage;
 
         function init() {
-            vm.page = PageService.findPageById(vm.pageId);
-            console.log(vm.page.name)
+            PageService
+                .findPageByWebsiteId(vm.websiteId)
+                .success(function (pages) {
+                    vm.pages = pages;
+                })
+                .error(function (err) {
+                    console.log("Error retrieving pages");
+                    console.log(err);
+                });
+            PageService
+                .findPageById(vm.pageId)
+                .success(function (page) {
+                    vm.page = page;
+                })
+                .error(function (err) {
+                    console.log("Error retrieving page");
+                    console.log(err);
+                });
         }
         init();
 
         function deletePage() {
-            console.log("In controller "+ vm.pageId)
-            var status;
-            status = PageService.deletePage(vm.pageId)
-            if(status === null) {
-                vm.error = "Unable to delete page."
-            }
+            //console.log("In controller "+ vm.pageId)
+            PageService.deletePage(vm.pageId)
+            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+
         }
     }
 })();
