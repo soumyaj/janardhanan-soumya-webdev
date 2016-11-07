@@ -128,36 +128,7 @@ module.exports = function(app) {
             res.sendStatus(200);
             return;
         }
-        var movedWidget = null;
-
-        for(var w in widgets) {
-            if(widgets[w].pageId === pid) {
-                //if widget was moved down
-                if(initial < final) {
-                    if(widgets[w].order===initial) movedWidget = w;
-                    else if(widgets[w].order>initial && widgets[w].order<=final) widgets[w].order-=1;
-                }
-                //if widget was moved up
-                else {
-                    if(widgets[w].order===initial) movedWidget = w;
-                    else if(widgets[w].order<initial && widgets[w].order>=final) widgets[w].order+=1;
-                }
-            }
-        }
-        if(movedWidget) widgets[movedWidget].order = final;
-        res.sendStatus(200);
+        widgets.splice(final,0,widgets.splice(start,1)[0]);
     }
 
-    /*
-     * HELPER FUNCTIONS
-     ** getLastWidgetOrder : returns the order value of the last widget in the page
-     *                       (as displayed on the UI)
-     */
-    function getLastWidgetOrder(pageId) {
-        var lastOrder = -1;
-        for(var w in widgets) {
-            if(widgets[w].pageId===pageId && widgets[w].order>lastOrder) lastOrder = widgets[w].order;
-        }
-        return lastOrder;
-    }
 };

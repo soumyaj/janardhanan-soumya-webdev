@@ -13,7 +13,7 @@
 </nav>
 
 <div class="container-fluid list-group" jga-sortable>
-        <div ng-switch="widget.widgetType" ng-repeat="widget in model.widgets">
+        <div ng-switch="widget.widgetType" ng-repeat="widget in model.widgets" class="list-group-item">
             <div>
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
@@ -30,8 +30,7 @@
             </div>
 
             <div ng-switch-when="YOUTUBE">
-                <iframe width={{model.width}} height="315"
-                        ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
+                <iframe width={{model.width}} height="315" ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
                         frameborder="0" allowfullscreen></iframe>
             </div>
             <div ng-switch-when="IMAGE">
