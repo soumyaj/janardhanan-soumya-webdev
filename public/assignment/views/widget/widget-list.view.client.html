@@ -12,21 +12,15 @@
         </span>
 </nav>
 
-<div class="row container-fluid">
-    <div ng-show="model.error" class="alert alert-danger" role="alert">
-        {{model.error}}
-    </div>
-
-    <div jga-sortable>
-        <div ng-switch="widget.widgetType"
-             ng-repeat="widget in model.widgets">
-
+<div class="container-fluid list-group" jga-sortable>
+        <div ng-switch="widget.widgetType" ng-repeat="widget in model.widgets">
+            <div>
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}/" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
+            </div>
 
             <div ng-switch="widget.size" ng-switch-when="HEADER">
-
                 <h1 ng-switch-when=1>{{widget.text}}</h1>
                 <h2 ng-switch-when=2>{{widget.text}}</h2>
                 <h3 ng-switch-when=3>{{widget.text}}</h3>
@@ -46,8 +40,8 @@
             <div ng-switch-when="HTML" ng-bind-html="model.checkSafeHtml(widget.text)">
             </div>
         </div>
-    </div>
-    </div>
+</div>
+
 
     <nav class="navbar navbar-default navbar-fixed-bottom footer">
         <div class="container-fluid">

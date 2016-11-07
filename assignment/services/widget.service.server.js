@@ -29,6 +29,8 @@ module.exports = function(app) {
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
+    app.put("/page/:pid/widget", sortWidgets);
+
 
 
     function findAllWidgetsForPage(req, res) {
@@ -84,34 +86,78 @@ module.exports = function(app) {
     }
 
     function uploadImage(req, res) {
-        var userId = req.body.userId;
-        var websiteId = req.body.websiteId;
-        var pageId = req.body.pageId;
-        var widgetId = req.body.widgetId;
-        var width = req.body.width;
-        var myFile = req.file;
 
-        var originalname = myFile.originalname;
-        var filename = myFile.filename;
-        var path = myFile.path;
-        var destination   = myFile.destination;
-        var size = myFile.size;
-        var mimetype = myFile.mimetype;
+        var widgetId      = req.body.widgetId;
+        var userId        = req.body.userId;
+        var websiteId     = req.body.websiteId;
+        var pageId        = req.body.pageId;
+        var widget        = getWidgetById(widgetId);
 
-        var uploadPath ="/assignment/uploads/";
-        var homeUrl ="/assignment/#/user/"
-        for (var w in widgets) {
-            if (widgets[w]._id == widgetId) {
-                widgets[w].name = originalname;
-                widgets[w].width = width;
-                widgets[w].url = uploadPath + filename;
-                console.log(homeUrl+
-                    userId+'/website/'+websiteId+'/page/'+pageId+'/widget/'+widgetId)
-                res.redirect(homeUrl+
-                    userId+'/website/'+websiteId+'/page/'+pageId+'/widget/'+widgetId);
-                return;
+        //get the widget's attributes
+        var width         = req.body.width;
+        var name          = req.body.name;
+        var text          = req.body.text;
+
+        var metadata = {
+            originalname    : req.file.originalname, // file name on user's computer
+            filename        : req.file.filename,     // new file name in upload folder
+            fullPath        : req.file.path,         // full path of uploaded file
+            size            : req.file.size,
+            mimeType        : req.file.mimetype
+        };
+
+        var url = "uploads/"+metadata.filename;
+        widget.url = url;
+
+        widget.width = width;
+        widget.name = name;
+        widget.text = text;
+        widget.metadata = metadata;
+        widget = updateWidgetById(widgetId, widget);
+
+        if(widget)
+            res.redirect("/assignment/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+        else res.redirect("back");
+    }
+
+    function sortWidgets(req, res) {
+        var pid = req.params.pageId;
+        var initial = parseInt(req.query.initial);
+        var final   = parseInt(req.query.final);
+        if(initial===final) {
+            res.sendStatus(200);
+            return;
+        }
+        var movedWidget = null;
+
+        for(var w in widgets) {
+            if(widgets[w].pageId === pid) {
+                //if widget was moved down
+                if(initial < final) {
+                    if(widgets[w].order===initial) movedWidget = w;
+                    else if(widgets[w].order>initial && widgets[w].order<=final) widgets[w].order-=1;
+                }
+                //if widget was moved up
+                else {
+                    if(widgets[w].order===initial) movedWidget = w;
+                    else if(widgets[w].order<initial && widgets[w].order>=final) widgets[w].order+=1;
+                }
             }
         }
-        res.redirect("");
+        if(movedWidget) widgets[movedWidget].order = final;
+        res.sendStatus(200);
+    }
+
+    /*
+     * HELPER FUNCTIONS
+     ** getLastWidgetOrder : returns the order value of the last widget in the page
+     *                       (as displayed on the UI)
+     */
+    function getLastWidgetOrder(pageId) {
+        var lastOrder = -1;
+        for(var w in widgets) {
+            if(widgets[w].pageId===pageId && widgets[w].order>lastOrder) lastOrder = widgets[w].order;
+        }
+        return lastOrder;
     }
 };

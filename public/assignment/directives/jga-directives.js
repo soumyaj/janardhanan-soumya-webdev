@@ -4,19 +4,21 @@
         .directive("jgaSortable", jgaSortable);
 
     function jgaSortable() {
-
-        function linker(scope, element, attributes) {
+        console.log("In sortable - jga-directives")
+        function linker(scope, element) {
             var start = -1;
             var end = -1;
-            element
-                .sortable({
-                    axis    : 'y',
-                    start   : function (event, ui) {
+            $(element).sortable({
+                // .sortable({
+                    axis: 'y',
+                    start: function (event, ui,attributes) {
                         start = ($(ui.item).index());
+                        console.log(($(ui.item).index()))
                     },
-                    stop    : function (event, ui) {
+                    stop: function (event, ui) {
                         end = ($(ui.item).index());
                         scope.sortableController.sort(start, end);
+                        console.log($(ui.item).index())
                     }
                 });
         }
@@ -24,6 +26,7 @@
         return {
             scope: {},
             link: linker,
+            restrict: 'C',
             controller: sortableController,
             controllerAs: 'sortableController'
         };
@@ -34,6 +37,9 @@
         vm.sort = sort;
 
         function sort(start, end) {
+            console.log("In sort jga-directives")
+            console.log(start)
+            console.log(end)
             var pageId = $routeParams.pid;
             WidgetService
                 .sortWidget(pageId, start, end)
@@ -43,8 +49,8 @@
                     }
                 })
                 .error(function(err) {
-
                 });
         }
+
     }
 })();

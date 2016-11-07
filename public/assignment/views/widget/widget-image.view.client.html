@@ -19,10 +19,14 @@
             <label for="width">Width</label>
             <input ng-model="model.widget.width" type="number" class="form-control" id="width" placeholder="100">
         </div>
-        <div>
-            <form action="/api/upload"  method="post" enctype="multipart/form-data">
-                <input  name="myFile"   type="file" class="form-control"/>
-                <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
+
+
+
+            <div class="form-group">
+                <label for="url">Upload</label>
+            <form action="/api/upload" method="post" enctype="multipart/form-data">
+                <input  name="myFile" type="file" class="form-control"/>
+                <input  name="width" value="{{model.widget.width}}" style="display: none"/>
                 <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
                 <input  name="userId" value="{{model.userId}}"   style="display: none"/>
                 <input  name="websiteId" value="{{model.websiteId}}"   style="display: none"/>
