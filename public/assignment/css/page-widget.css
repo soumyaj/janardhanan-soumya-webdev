@@ -58,19 +58,6 @@ li.borderless {
     padding-right: 0px;
 }
 
-@media only screen and (orientation: portrait) {
-     .soumya {
-         display: none;
-         width: 100%;
-    }
-}
-
-@media only screen and (orientation: landscape) {
-    .soumya {
-
-    }
-}
-
 .relative-position {
     position: relative;
 }
