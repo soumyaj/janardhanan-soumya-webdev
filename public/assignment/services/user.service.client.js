@@ -4,7 +4,6 @@
         .factory("UserService", UserService);
 
     function UserService($http) {
-
         var api = {
             findUserByCredentials: findUserByCredentials,
             findUserById: findUserById,
@@ -19,16 +18,18 @@
             return $http.delete(url);
         }
 
-        function updateUser(user) {
-            var url = "/api/user/" + user._id;
-            console.log("Update "+url)
+        function updateUser(userId,user) {
+            var url = "/api/user/" + userId;
+            console.log("Update "+user.email)
             $http.put(url, user);
         }
 
         function createUser(username, password) {
             if(username == null || password == null)
+            {
+                return '0'
+            }
 
-            {return '0'}
             var user = {
                 username: username,
                 password: password,

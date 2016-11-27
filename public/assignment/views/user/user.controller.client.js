@@ -57,7 +57,8 @@
 
     function profileController($routeParams,UserService, $location) {
         var vm = this;
-        userId = parseInt($routeParams["uid"]);
+        userId = $routeParams["uid"];
+        //var userId = $routeParams["uid"];
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
 
@@ -72,16 +73,15 @@
                     }
                 })
                 .error(function (err) {
-                    console.log("Couldnt find user. In ProfileController")
-                    console.log(err)
+                    console.log("Couldnt find user. In ProfileController");
                 })
         }
-
         function updateUser(user) {
             if (user.email) {
                 console.log("Update user "+user.firstName)
-                UserService.updateUser(user);
-                $location.url("/user/" + vm.userId);
+                UserService.updateUser(userId, user);
+                console.log("In updateUser controller " + userId)
+                $location.url("/user/" + userId);
             } else {
                 vm.error = "Email cant be empty.";
             }
@@ -91,8 +91,6 @@
             console.log("In controller "+ userId);
             var status;
             UserService.deleteUser(userId)
-
-
         }
         init();
     }

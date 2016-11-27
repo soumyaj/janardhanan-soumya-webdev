@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<nav class="navbar navbar-fixed-top navbar-default header">
+        <span class="navbar-brand navbar-default header">
+        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+            <span class="glyphicon glyphicon-chevron-left pull-left header-icon"></span>
+        </a>
+        </span>
+    <span class="navbar-brand navbar-default header-text text-right">Choose Widget</span>
+</nav>
+
+<div class="container">
+
+    <div class="input-group">
+        <input ng-model="searchText" type="text" class="form-control">
+        <span class="input-group-btn">
+        <a ng-click="model.searchPhotos(searchText)" class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+    </div>
+
+    <div class="row">
+        <div ng-repeat="photo in model.photos.photo" class="col-xs-4">
+            <img ng-click="model.selectPhoto(photo)"
+                 width="100%"
+                 ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_s.jpg"/>
+        </div>
+    </div>
+
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom footer">
+    <div class="container-fluid">
+        <div class="row container-fluid navbar-text pull-right">
+            <a href="#/user/{{model.userId}}/">
+                <span class="glyphicon glyphicon-user footer-text"></span>
+            </a>
+        </div>
+    </div>
+</nav>

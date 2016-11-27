@@ -13,24 +13,24 @@
         </div>
         <ul class="list-group ">
             <li class="list-group-item borderless">
-                <a ng-click="model.createHeader()">Header</a>
+                <a ng-click="model.addWidget('HEADER')">Header</a>
             </li>
             <li class="list-group-item borderless">
-                <a href ng-click="model.createImage()" class="navbar-link">Image</a>
-            </li>
-
-            <li class="list-group-item borderless">
-                <a class="navbar-link" ng-click="model.createYoutube()">YouTube</a>
+                <a href ng-click="model.addWidget('IMAGE')" class="navbar-link">Image</a>
             </li>
 
             <li class="list-group-item borderless">
-                <a ng-click="model.createHtml()" class="navbar-link ">HTML</a>
+                <a class="navbar-link" ng-click="model.addWidget('YOUTUBE')">YouTube</a>
+            </li>
+
+            <li class="list-group-item borderless">
+                <a ng-click="model.addWidget('HTML')" class="navbar-link ">HTML</a>
             <li class="list-group-item borderless">
                 <a href="#" class="navbar-link ">Label</a>
             </li>
             </li>
             <li class="list-group-item borderless">
-                <a href="#" class="navbar-link ">Text Input</a>
+                <a ng-click="model.addWidget('TEXT')" class="navbar-link ">Text Input</a>
             </li>
             <li class="list-group-item borderless">
                 <a href="#" class="navbar-link ">Link</a>

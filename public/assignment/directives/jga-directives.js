@@ -5,11 +5,14 @@
 
     function jgaSortable() {
         console.log("In sortable - jga-directives")
+
         function linker(scope, element) {
+            console.log("In linker - jga-directives")
             var start = -1;
             var end = -1;
-            $(element).sortable({
-                // .sortable({
+            element
+            // ({
+                .sortable({
                     axis: 'y',
                     start: function (event, ui,attributes) {
                         start = ($(ui.item).index());
@@ -26,7 +29,7 @@
         return {
             scope: {},
             link: linker,
-            restrict: 'C',
+            restrict: 'AEC',
             controller: sortableController,
             controllerAs: 'sortableController'
         };

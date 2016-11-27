@@ -5,16 +5,9 @@ module.exports = function() {
         username: {type: String, required: true},
         password: String,
         firstName: String,
-
-        // facebook: {
-        //     token: String,
-        //     id: String,
-        //     displayName: String
-        // },
         lastName: String,
         email: String,
-        phone: String,
-        //dob: Date,
+        websites: {type: mongoose.Schema.Types.ObjectId, ref: 'Website', default: []},
         dateCreated: {type: Date, default: Date.now}
     }, {collection: "assignment.user"});
 

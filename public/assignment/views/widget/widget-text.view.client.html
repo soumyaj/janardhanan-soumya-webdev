@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="container">
+    <form name="form">
+        <div class="form-group" ng-class="{'has-error': form.name.$touched && form.name.$invalid}">
+            <label for="name">Name</label>
+            <input ng-model="model.widget.name"
+                   id="name"
+                   type="text"
+                   name="name"
+                   placeholder="Name"
+                   class="form-control"
+                   required />
+            <span ng-show="form.name.$touched && form.name.$invalid" class="error">Name is required.</span>
+        </div>
+        <div class="input-label">Text</div>
+        <input ng-model="model.widget.text" class="form-control"/>
+        <div class="input-label">Rows</div>
+        <input ng-model="model.widget.rows" class="form-control" type="number"/>
+        <div class="input-label">Placeholder</div>
+        <input ng-model="model.widget.placeholder" class="form-control"/>
+        <div class="input-group input-label">
+            <input type="text"
+                   readonly
+                   value="Formatted"
+                   class="form-control jga-white-bg"/>
+            <span class="input-group-addon">
+                    <input ng-model="model.widget.formatted" type="checkbox"/>
+                </span>
+        </div>
+    </form>
+</div>
+<a ng-click="model.deleteWidget()" class="btn btn-danger btn-block"
+href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/">Delete</a>

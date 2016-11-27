@@ -53,6 +53,13 @@ li.borderless {
     border-right: 0 none;
     padding-right: 0px;
 }
+.borderless {
+    border-top: 0 none;
+    border-bottom: 0 none;
+    border-left: 0 none;
+    border-right: 0 none;
+    padding-right: 0px;
+}
 
 .right-padding-zero {
     padding-right: 0px;
