@@ -21,7 +21,8 @@
                  ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]">
             </div>
         </form>
+        <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block"
+           href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/">Delete</a>
     </div>
-    <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block"
-       href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/">Delete</a>
+
 </div>

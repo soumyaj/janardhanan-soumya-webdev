@@ -8,6 +8,11 @@ module.exports = function() {
         lastName: String,
         email: String,
         websites: {type: mongoose.Schema.Types.ObjectId, ref: 'Website', default: []},
+        facebook: {
+            token: String,
+            id: String,
+            displayName: String
+        },
         dateCreated: {type: Date, default: Date.now}
     }, {collection: "assignment.user"});
 
