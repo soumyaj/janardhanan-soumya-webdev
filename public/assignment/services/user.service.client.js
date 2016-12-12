@@ -9,11 +9,11 @@
             findUserById: findUserById,
             updateUser: updateUser,
             unregisterUser: unregisterUser,
-            registerUser: registerUser,
+            register: registerUser,
             createUser: createUser,
             login:login,
             logout:logout,
-            loggedIn: loggedIn,
+            loggedin: loggedin
         };
         return api;
 
@@ -23,14 +23,15 @@
                 password: password
             };
             return $http.post("/api/login",user);
+            console.log($http.post("/api/login",user))
         }
 
         function logout(){
             return $http.post("/api/logout");
         }
 
-        function loggedIn(){
-            return $http.get("/api/loggedIn");
+        function loggedin(){
+            return $http.get("/api/loggedin");
         }
 
 
@@ -74,7 +75,7 @@
                 lastName: " "
             };
             console.log(user)
-            return $http.post("/api/user", user);
+            return $http.post("/api/register", user);
         }
 
         function findUserById(userId) {

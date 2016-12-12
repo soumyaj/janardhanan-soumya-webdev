@@ -14,7 +14,7 @@
             if (username) {
                 if (password === password2) {
                     UserService
-                        .createUser(username, password)
+                        .register(username, password)
                         .success(function (user) {
                             $location.url("/user/" + user._id);
                         })
@@ -34,28 +34,43 @@
         var vm = this;
         vm.login = login;
 
-        function login(username,password) {
-            console.log("In login controller "+ username);
-
-            if(username === null || password == null) {
-                //vm.error = "Please enter both username and password";
-                return;
-            }
+    //     function login(username,password) {
+    //         console.log("In login controller "+ username);
+    //
+    //         if(username === null || password == null) {
+    //             //vm.error = "Please enter both username and password";
+    //             return;
+    //         }
+    //         UserService
+    //             .login(username, password)
+    //             .success(function(user) {
+    //                 console.log(user.data);
+    //             if(user == null) {
+    //                 vm.error = "No such user";
+    //             } else {
+    //                 $rootScope.currentUser = user;
+    //                 $location.url("/user/" + user._id);
+    //                 console.log("/user/" + user._id)
+    //             }
+    //         })
+    //             .error(function(err){
+    //                 console.log("In .error")
+    //                 console.log(err);
+    //             });
+    //     }
+    // }
+        function login(username, password) {
             UserService
                 .login(username, password)
-                .success(function(user) {
-                    console.log(user.data);
-                if(user === '0') {
-                    vm.error = "No such user";
-                } else {
-                    $rootScope.currentUser = user;
-                    $location.url("/user/" + user._id);
-                    console.log("/user/" + user._id)
-                }
-            })
-                .error(function(err){
-                    console.log("In .error")
-                    console.log(err);
+                .success(function (user) {
+                    if(user === '0'){
+                        vm.error = "No such user."
+                    } else{
+                        $location.url("/user/" + user._id);
+                    }
+                })
+                .error(function (error) {
+                    console.log(error);
                 });
         }
     }
@@ -65,7 +80,7 @@
         userId = $routeParams["uid"];
         //var userId = $routeParams["uid"];
         vm.updateUser = updateUser;
-        vm.deleteUser = deleteUser;
+        vm.unregisterUser = unregisterUser;
 
         vm.logout = logout;
         vm.userId = $rootScope.currentUser._id;
@@ -95,10 +110,10 @@
             }
         }
 
-        function deleteUser() {
+        function unregisterUser() {
             console.log("In controller "+ userId);
             var status;
-            UserService.deleteUser(userId)
+            UserService.unregisterUser(userId)
         }
 
         function logout() {

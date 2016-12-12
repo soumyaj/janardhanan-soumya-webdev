@@ -1,5 +1,8 @@
+<div class="container" ng-controller="LoginController as model">
 <h2>Login</h2>
-
+    <span ng-show="model.error">
+        {{model.error}}
+    </span>
 <form name="loginForm">
 
     <input ng-model="model.user.username"
@@ -28,14 +31,9 @@
     Register
 </a>
 
-<a href="/auth/google"
-   class="btn btn-danger btn-block">
-    <span class="fa fa-google-plus"></span>
-    Google
-</a>
-
 <a href="/auth/facebook"
    class="btn btn-primary btn-block">
     <span class="fa fa-facebook"></span>
     Facebook
 </a>
+</div>

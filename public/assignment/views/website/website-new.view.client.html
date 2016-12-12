@@ -51,10 +51,13 @@
     <div class="col-sm-8">
 
         <div class="container-fluid">
-            <form>
+            <span ng-show="websiteForm.websiteName.$invalid">
+                    {{model.error}}
+            </span>
+            <form name="websiteForm">
                 <div class="form-group">
                     <label for="websiteName">Website Name</label>
-                    <input ng-model="website.name" type="text" class="form-control" id="websiteName" placeholder="Blogger">
+                    <input required ng-model="website.name" type="text" class="form-control" id="websiteName" placeholder="Blogger">
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>

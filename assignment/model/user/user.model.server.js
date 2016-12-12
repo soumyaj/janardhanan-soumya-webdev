@@ -49,7 +49,7 @@ module.exports = function() {
 
 
     function findUserByCredentials(username, password) {
-        return User.findOne({'username': username});
+        return User.findOne({username: username});
     }
 
     function findUserById(userId) {
@@ -58,7 +58,7 @@ module.exports = function() {
     }
 
     function findUserByUsername(username){
-        return User.findOne({'username': username});
+        return User.findOne({username: username});
     }
     function findUserByFacebookId(facebookId) {
         return User.findOne({'facebook.id': facebookId});

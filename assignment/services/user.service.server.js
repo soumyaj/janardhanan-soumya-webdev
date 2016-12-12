@@ -7,9 +7,9 @@ module.exports = function(app,model) {
 
     var userModel = model.userModel;
 
-    app.get("/auth/facebook", passport.authenticate('facebook'));
+    app.get("/auth/facebook", passport.authenticate('facebook', { scope : 'email' }));
     app.get("/auth/facebook/callback", passport.authenticate('facebook', {
-        successRedirect: '/assignment/#/user',
+        successRedirect: '/assignment/#/user/',
         failureRedirect: '/assignment/#/login'
     }));
 
@@ -20,7 +20,7 @@ module.exports = function(app,model) {
     app.post('/api/user', createUser);
     app.put('/api/user/:uid', updateUser);
     app.delete('/api/user/:uid', unregisterUser);
-    app.get("/api/loggedIn", loggedIn);
+    app.get("/api/loggedin", loggedin);
     app.post("/api/register", register);
     app.post("/api/logout", logout);
 
@@ -66,6 +66,8 @@ module.exports = function(app,model) {
                     } else {
                         facebookUser = {
                             username: profile.displayName.replace(/ /g,''),
+                            firstname: profile.displayName.split( )[0],
+                            lastname: profile.displayName.split( )[1],
                             facebook: {
                                 token: token,
                                 id: profile.id,
@@ -84,29 +86,57 @@ module.exports = function(app,model) {
             );
     }
 
-    function localStrategy(username, password, done) {
-        console.log("In local strategy")
-        console.log(username)
+    function localStrategyOriginal(username, password, done) {
+        console.log("ls");
+        console.log(username);
         userModel
             .findUserByUsername(username)
             .then(
-                function(foundUser) {
-                    console.log("IN then");
-                    console.log(foundUser.username)
-                    if(foundUser && bcrypt.compareSync(password, foundUser.password)) {
-                        return done(null, foundUser);
+                function(user) {
+                    console.log(user.username);
+                    if(user && bcrypt.compareSync(password, user.password)) {
+                        console.log("ls t");
+                        //if(user && password === user.password) {
+                        return done(null, user);
                     } else {
                         return done(null, false);
                     }
                 },
                 function(err) {
-                    console.log("IN error")
                     if (err) { return done(err); }
                 }
             );
     }
 
-    function loggedIn(req, res) {
+
+    function localStrategy(username, password, done) {
+        console.log("ls");
+        console.log(username);
+        userModel
+            .findUserByUsername(username)
+            .then(
+                    function(user){
+                        if (user !== null) {
+                            if (user && bcrypt.compareSync(password, user.password)) {
+                                console.log("ls t");
+                                //if(user && password === user.password) {
+                                return done(null, user);
+                            } else {
+                                return done(null, false);
+                            }
+                        } else {
+
+                            return done(null, false);
+                        }
+                    },
+                    function(err) {
+                        //if (err) { return done(err); }
+                        res.send('0');
+                    }
+            );
+    }
+
+    function loggedin(req, res) {
         if(req.isAuthenticated()){
             res.json(req.foundUser);
         } else {
@@ -116,6 +146,8 @@ module.exports = function(app,model) {
 
     function login(req, res) {
         var user = req.user;
+        console.log("User object");
+        console.log(user.username)
         res.json(user);
     }
 
@@ -232,6 +264,8 @@ module.exports = function(app,model) {
 
     function findUserByUsername(req, res){
         var username = req.query.username;
+        console.log("Userr");
+        console.log(username)
         userModel
             .findUserByUsername(username, res)
             .then(

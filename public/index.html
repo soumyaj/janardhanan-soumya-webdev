@@ -1,30 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Web Dev Course Home Page</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Soumya Janardhanan</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="css/grayscale.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
-<body>
-<h1>Web Dev Course Home Page</h1>
 
-<p>
-    Customize this home page to your linking.
-</p>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-<h2>Required links</h2>
-<ul>
-    <li>
-        <a href="project/index.html">Project</a>
-    </li>
-    <li>
-        <a href="assignment/index.html">Assignment</a>
-    </li>
-    <li>
-        <a href="test/index.html">Test MongoDB</a>
-    </li>
-    <li>
-        <a href="https://github.com/soumyaj/janardhanan-soumya-webdev/">Your public repository at GitHub.com</a>
-    </li>
-</ul>
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse navbar-fixed-top">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#download">Coursework</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 >Soumya Janardhanan</h1>
+                        <p  class="intro-text"> Sometimes techie.
+                            <br></p>
+
+                        <a  href="#about" class="btn btn-circle page-scroll">
+                            <i style="color:grey;" class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>About Soumya</h2>
+                <p>Soumya Janardhanan is a student, pursuing a graduate degree in Computer Science at Northeastern University, Boston. She currently works at State Street Corporation, as the Test Automation Architect for the Value Added domain.</p>
+                <p>Soumya is primarily interested in Data Science. She has had the opportunity to enhance her problem-solving and back-end programming skills in Python, Java, Ruby and Perl, due to her experiences working with Netapp Inc, Flipkart India, and her current role at State Street Corporation. </p>
+                <p> Soumya loves a well curated Spotify playlist, and can be found with the latest issue of London Review of Books and a cup of tea, in her spare time. </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="content-section text-center">
+        <div class="download-section">
+            <div class="container">
+                <div class="col-md-6 ">
+                    <h2>Assignments</h2>
+                    <p> WebAppMaker - coursework for CS 5610 <br> Web Development.</p>
+                    <a href="http://localhost:5000/assignment/#/" class="btn btn-default btn-lg">View Application</a>
+                </div>
+                <div class="col-md-6 ">
+                    <h2>Project</h2>
+                    <p>A simple social media application for discovering new books</p>
+                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">View Application</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Contact Soumya</h2>
+                <p>Say hello!</p>
+                <p><a href="mailto:janardhanan.so@husky.neu.edu">janardhanan.so@husky.neu.edu</a>
+                </p>
+                <ul class="list-inline banner-social-buttons">
+                    <li>
+                        <a href="https://twitter.com/soumyaj" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/soumyaj/janardhanan-soumya-webdev" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                    </li>
+                    <li>
+                        <a href="http://www.linkedin.com/in/soumya-janardhanan-b3229915" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">LinkedIn</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+           <p> Custom Images By <a target="_blank" href="http://instagram.com/akashputhraya">Akash Puthraya</a></p>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/grayscale.min.js"></script>
+
 </body>
+
 </html>
