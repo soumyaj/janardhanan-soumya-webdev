@@ -72,6 +72,7 @@ li.borderless {
     border-bottom: 0 none;
     border-left: 0 none;
     border-right: 0 none;
+
 }
 
 .right-padding-zero {
@@ -108,6 +109,9 @@ textarea {
     background-color: white;
 }
 .zero-right-padding {
+    padding-right: 0px;
+}
+.zero-left-padding {
     padding-right: 0px;
 }
 

@@ -29,44 +29,40 @@
     </div>
 </nav>
 
-
-<div>
-    <div class="v- col-sm-4 hidden-xs">
-        <div class="container-fluid borderless">
-            <div ng-show="model.error" class="alert alert-danger" role="alert">
-                {{model.error}}
-            </div>
-            <ul class="list-group ">
-                <li ng-repeat="website in model.websites" class="list-group-item borderless">
-                    <a href="#/user/{{website.developerId}}/website/{{website._id}}/page/}}">{{website.name}}</a>
-                    <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="navbar-link ">
-                        <span class="glyphicon glyphicon-cog body-icon pull-right"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+<div class="col-sm-4 hidden-sm hidden-xs">
+    <div class="container-fluid">
+        <ul class="list-group">
+            <li ng-repeat="website in model.websites" class="list-group-item borderless">
+                <a href="#/user/{{website.developerId}}/website/{{website._id}}/page/}}">{{website.name}}</a>
+                <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="navbar-link ">
+                    <span class="glyphicon glyphicon-cog body-icon pull-right"></span>
+                </a>
+            </li>
+        </ul>
     </div>
-    <div class="v-divider hidden-sm hidden-xs"></div>
 
-    <div class="col-sm-8">
+</div>
+<div class="v-divider hidden-sm hidden-xs"></div>
 
-        <div class="container-fluid">
-            <span ng-show="websiteForm.websiteName.$invalid">
-                    {{model.error}}
-            </span>
-            <form name="websiteForm">
-                <div class="form-group">
-                    <label for="websiteName">Website Name</label>
-                    <input required ng-model="website.name" type="text" class="form-control" id="websiteName" placeholder="Blogger">
-                </div>
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea ng-model="website.description"class="form-control" id="description" rows="6"></textarea>
-                </div>
-            </form>
+<div class="col-sm-8">
+
+    <div class="container-fluid" ng-controller="NewWebsiteController as model">
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
         </div>
+        <form name="websiteForm">
+            <div class="form-group">
+                <label for="websiteName">Website Name</label>
+                <input ng-required="true" ng-model="website.name" type="text" class="form-control" id="websiteName" placeholder="Blogger">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea ng-model="website.description"class="form-control" id="description" rows="6"></textarea>
+            </div>
+        </form>
     </div>
 </div>
+
 <nav class="navbar navbar-default navbar-fixed-bottom blue-footer">
     <div class="container-fluid">
         <div class="row container-fluid navbar-text pull-right">

@@ -3,9 +3,10 @@
     <span ng-show="model.error">
         {{model.error}}
     </span>
-<form name="loginForm">
+<form novalidate name="loginForm">
 
-    <input ng-model="model.user.username"
+    <input autocomplete="off"
+           ng-model="model.user.username"
            placeholder="username"
            required
            name="username"

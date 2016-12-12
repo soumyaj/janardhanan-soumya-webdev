@@ -28,7 +28,6 @@
         </div>
     </div>
 </nav>
-</div>
 <div>
     <div class="col-sm-4 hidden-xs">
         <div class="container-fluid borderless">
@@ -48,7 +47,7 @@
         <div ng-show="model.error" class="alert alert-danger" role="alert">
             {{model.error}}
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid" ng-controller="EditWebsiteController as model">
             <form name = "websiteEditForm">
                 <div class="form-group">
                     <label for="websiteName">Website Name</label>

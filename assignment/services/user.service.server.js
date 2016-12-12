@@ -86,28 +86,6 @@ module.exports = function(app,model) {
             );
     }
 
-    function localStrategyOriginal(username, password, done) {
-        console.log("ls");
-        console.log(username);
-        userModel
-            .findUserByUsername(username)
-            .then(
-                function(user) {
-                    console.log(user.username);
-                    if(user && bcrypt.compareSync(password, user.password)) {
-                        console.log("ls t");
-                        //if(user && password === user.password) {
-                        return done(null, user);
-                    } else {
-                        return done(null, false);
-                    }
-                },
-                function(err) {
-                    if (err) { return done(err); }
-                }
-            );
-    }
-
 
     function localStrategy(username, password, done) {
         console.log("ls");
